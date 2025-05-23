@@ -16,8 +16,8 @@ function module(name) {
     return app.modules[name] || null;
 }
 ;
-function config(name = null, data = {}) {
-    if (!name)
+function config(data) {
+    if (!data)
         return (0, data_1.getData)('__config__') || {};
     (0, data_1.setData)('__config__', data);
 }

@@ -11,7 +11,7 @@ export function module(name) {
   return app.modules[name] || null;
 };
 
-export function config(name: string = null, data: any = {}) {
-  if (!name) return getData('__config__') || {};
+export function config(data?: any) {
+  if (!data) return getData('__config__') || {};
   setData('__config__', data);
 }
