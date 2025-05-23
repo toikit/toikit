@@ -11,13 +11,7 @@ const mongoose_1 = __importDefault(require("mongoose"));
 const data_1 = require("../data");
 const inject_1 = require("../inject");
 const app_1 = require("../app");
-let databaseConfig = (0, app_1.config)().connections || {};
 let connections = {};
-for (let conn in databaseConfig) {
-    if (databaseConfig.hasOwnProperty(conn)) {
-        connections[conn] = mongoose_1.default.createConnection(databaseConfig[conn].uri, databaseConfig[conn]?.options);
-    }
-}
 function model(name) {
     return (0, inject_1.resolve)('model_' + name);
 }
@@ -38,6 +32,12 @@ function declareModel(names) {
         mounted && mounted.forEach(e => {
             e(Schema);
         });
+        let databaseConfig = (0, app_1.config)()?.mongo?.connections || {};
+        if (!databaseConfig.hasOwnProperty(conn))
+            throw Error('Database connection ' + conn + ' is not exitst');
+        if (!connections[conn]) {
+            connections[conn] = mongoose_1.default.createConnection(databaseConfig[conn].uri, databaseConfig[conn]?.options);
+        }
         const Model = connections[conn].model(name, Schema);
         (0, inject_1.declare)('value', Model, 'model_' + name);
     }

@@ -4,14 +4,7 @@ import { setData, getData } from "../data";
 import { resolve, declare, getDeclaration } from "../inject";
 import { config } from '../app';
 
-let databaseConfig = config().connections || {};
-let connections = {};
-
-for (let conn in databaseConfig) {
-  if (databaseConfig.hasOwnProperty(conn)) {
-    connections[conn] = mongoose.createConnection(databaseConfig[conn].uri, databaseConfig[conn]?.options);
-  }
-}
+let connections: any = {};
 
 // Model
 export function model(name) {
@@ -36,6 +29,14 @@ export function declareModel(names: any) {
     mounted && mounted.forEach(e => {
       e(Schema);
     });
+
+
+    let databaseConfig = config()?.mongo?.connections || {};
+    
+    if (!databaseConfig.hasOwnProperty(conn)) throw Error('Database connection ' + conn + ' is not exitst');
+    if (!connections[conn]) {
+      connections[conn] = mongoose.createConnection(databaseConfig[conn].uri, databaseConfig[conn]?.options);
+    }
 
     const Model = connections[conn].model(name, Schema);
     declare('value', Model, 'model_' + name);
