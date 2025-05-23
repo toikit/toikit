@@ -1,0 +1,35 @@
+{
+  "name": "@toikit/toikit",
+  "version": "1.0.0",
+  "description": "Toikit Framework for build server application",
+  "main": "dist/index.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "test": "npm run test",
+    "build": "rm -rf ./dist && npx tsc && npx tsc-alias"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/toikit/toikit.git"
+  },
+  "keywords": [
+    "toikit",
+    "server",
+    "nodejs",
+    "framework"
+  ],
+  "author": "Toikit",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/toikit/toikit/issues"
+  },
+  "homepage": "https://github.com/toikit/toikit#readme",
+  "dependencies": {
+    "@types/express": "^5.0.2",
+    "mongoose": "^8.15.0",
+    "reflect-metadata": "^0.2.2",
+    "typescript": "^5.8.3"
+  }
+}
