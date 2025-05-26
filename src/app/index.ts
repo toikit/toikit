@@ -11,7 +11,12 @@ export function module(name) {
   return app.modules[name] || null;
 };
 
-export function config(data?: any) {
-  if (!data) return getData('__config__') || {};
+export function setConfig(data: any) {
   setData('__config__', data);
+}
+
+export function getConfig(name?: string) {
+  let config = getData('__config__') || {};
+  if (name) return config?.[name] || undefined;
+  return config;
 }

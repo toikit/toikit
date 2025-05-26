@@ -32,7 +32,7 @@ function declareModel(names) {
         mounted && mounted.forEach(e => {
             e(Schema);
         });
-        let databaseConfig = (0, app_1.config)()?.mongo?.connections || {};
+        let databaseConfig = (0, app_1.getConfig)('mongo')?.connections || {};
         if (!databaseConfig.hasOwnProperty(conn))
             throw Error('Database connection ' + conn + ' is not exitst');
         if (!connections[conn]) {

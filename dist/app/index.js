@@ -2,7 +2,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.app = app;
 exports.module = module;
-exports.config = config;
+exports.setConfig = setConfig;
+exports.getConfig = getConfig;
 const inject_1 = require("../inject");
 const data_1 = require("../data");
 function app(target = null) {
@@ -16,9 +17,13 @@ function module(name) {
     return app.modules[name] || null;
 }
 ;
-function config(data) {
-    if (!data)
-        return (0, data_1.getData)('__config__') || {};
+function setConfig(data) {
     (0, data_1.setData)('__config__', data);
+}
+function getConfig(name) {
+    let config = (0, data_1.getData)('__config__') || {};
+    if (name)
+        return config?.[name] || undefined;
+    return config;
 }
 //# sourceMappingURL=index.js.map

@@ -2,7 +2,7 @@
 import mongoose from 'mongoose';
 import { setData, getData } from "../data";
 import { resolve, declare, getDeclaration } from "../inject";
-import { config } from '../app';
+import { getConfig } from '../app';
 
 let connections: any = {};
 
@@ -31,7 +31,7 @@ export function declareModel(names: any) {
     });
 
 
-    let databaseConfig = config()?.mongo?.connections || {};
+    let databaseConfig = getConfig('mongo')?.connections || {};
     
     if (!databaseConfig.hasOwnProperty(conn)) throw Error('Database connection ' + conn + ' is not exitst');
     if (!connections[conn]) {
