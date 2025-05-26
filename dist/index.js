@@ -18,7 +18,6 @@ require("reflect-metadata");
 __exportStar(require("./container"), exports);
 __exportStar(require("./data"), exports);
 __exportStar(require("./inject"), exports);
-__exportStar(require("./mongo"), exports);
 __exportStar(require("./controller"), exports);
 __exportStar(require("./layer"), exports);
 __exportStar(require("./module"), exports);
