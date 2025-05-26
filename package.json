@@ -1,6 +1,6 @@
 {
   "name": "@toikit/toikit",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "description": "Toikit Framework for build server application",
   "main": "dist/index.js",
   "files": [

@@ -1,4 +1,3 @@
-import path from 'path';
 import {setData, getData} from '../data';
 
 export const setRoot = (dir?: string) => {
@@ -6,11 +5,8 @@ export const setRoot = (dir?: string) => {
 }
 
 export const rootPath = (ls?: string) => {
-  let dir = getData('__root_path__');
-  let root = path.resolve(dir, '../..');
-
-  if (ls) return path.join(root, ls);
-  return root;
+  if(!ls) return getData('__root_path__');
+  return getData('__root_path__') + '/' + ls;
 };
 
 export const appPath = (ls?: string) => {
