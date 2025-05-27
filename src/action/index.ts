@@ -18,7 +18,7 @@ export function doAction(name, data:any = null) {
   return rs;
 }
 
-export async function doActionWithAsync(name, data:any = null) {
+export async function doActionAsync(name, data:any = null) {
   let actions = getData('__action_' + name, []);
   let rs = undefined;
   let max = actions.length - 1;

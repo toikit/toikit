@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.addAction = addAction;
 exports.doAction = doAction;
-exports.doActionWithAsync = doActionWithAsync;
+exports.doActionAsync = doActionAsync;
 const data_1 = require("../data");
 function addAction(name, fn) {
     (0, data_1.setData)('__action_' + name, [fn]);
@@ -18,7 +18,7 @@ function doAction(name, data = null) {
     }
     return rs;
 }
-async function doActionWithAsync(name, data = null) {
+async function doActionAsync(name, data = null) {
     let actions = (0, data_1.getData)('__action_' + name, []);
     let rs = undefined;
     let max = actions.length - 1;
