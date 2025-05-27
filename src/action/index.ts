@@ -8,9 +8,10 @@ export function addAction(name, fn: any) {
 export function doAction(name, data:any = null) {
   let actions = getData('__action_' + name, []);
   let rs = undefined;
+  let max = actions.length - 1;
 
-  for (let action of actions) {
-    let nrs = action(rs, data);
+  for (const [i, action] of actions.entries()) {
+    let nrs = action(rs, data, {index: i, end: max == i});
     if (nrs) rs = nrs;
   }
 
@@ -20,9 +21,10 @@ export function doAction(name, data:any = null) {
 export async function doActionWithAsync(name, data:any = null) {
   let actions = getData('__action_' + name, []);
   let rs = undefined;
+  let max = actions.length - 1;
 
-  for await (let action of actions) {
-    let nrs = await action(rs, data);
+  for await (const [i, action] of actions.entries()) {
+    let nrs = await action(rs, data, {index: i, end: max == i});
     if (nrs) rs = nrs;
   }
 
